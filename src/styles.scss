@@ -1,1 +1,23 @@
-/* You can add global styles to this file, and also import other style files */
+@import "./assets/styles/container.css";
+@import "./assets/styles/normalize.css";
+@import "./assets/styles/icon-fonts.css";
+
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;400;500&display=swap");
+
+body,
+html {
+    height: 100%;
+}
+
+body {
+    color: #fff;
+    font-family: "Poppins", sans-serif;
+    font-size: 14px;
+    overflow-x: hidden;
+    background: url("./assets/img/background.jpg") center center/cover no-repeat;
+}
+.country-flag {
+    display: flex;
+    font-size: 32px;
+    max-width: 35px;
+}

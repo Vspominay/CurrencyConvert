@@ -1,0 +1,92 @@
+<div class="converter">
+    <div class="converter-content" [hidden]="isLoad || errorMessage">
+        <form #convertForm="ngForm" class="converter-form">
+            <div class="input-block">
+                <span [class.active]="!fromValue.valid" class="invalid-input"
+                    >Invalid value</span
+                >
+                <input
+                    autocomplete="off"
+                    type="text"
+                    class="input-currency"
+                    ngModel
+                    #fromValue="ngModel"
+                    name="fromValue"
+                    pattern="^([0-9]*)+(\.[0-9]*)?$"
+                    (input)="sendForm($event)"
+                />
+                <div
+                    class="select-block"
+                    (click)="changeCurrency(currencyFrom)"
+                >
+                    <span class="country-flag">
+                        <img
+                            [src]="currencyFrom.flag.flagCode"
+                            width="35"
+                            [alt]="currencyFrom.flag.altCode"
+                        />
+                    </span>
+                    <span class="option-abbr">{{ currencyFrom.code }}</span>
+                </div>
+            </div>
+
+            <div class="trade">
+                <div class="icon-arrows"></div>
+            </div>
+
+            <div class="input-block">
+                <span [class.active]="!toValue.valid" class="invalid-input"
+                    >Invalid value</span
+                >
+                <input
+                    autocomplete="off"
+                    type="text"
+                    class="input-currency"
+                    ngModel
+                    #toValue="ngModel"
+                    name="toValue"
+                    pattern="^([0-9]*)+(\.[0-9]*)?$"
+                    (input)="sendForm($event)"
+                />
+                <div class="select-block" (click)="changeCurrency(currencyTo)">
+                    <span class="country-flag">
+                        <img
+                            [src]="currencyTo.flag.flagCode"
+                            width="35"
+                            [alt]="currencyTo.flag.altCode"
+                        />
+                    </span>
+                    <span class="option-abbr">{{ currencyTo.code }}</span>
+                </div>
+            </div>
+        </form>
+        <div
+            class="converter-description"
+            *ngIf="currencyFrom.value && currencyTo.value && currentDate"
+        >
+            <div class="description-rate">
+                <div class="rate-title">Rate</div>
+                <div class="rate-value">
+                    {{
+                        currencyFrom.value
+                            | currency: currencyFrom.code + " ":"code":"1.2-5"
+                    }}
+                    /
+                    {{
+                        currencyTo.value
+                            | currency: currencyTo.code + " ":"code":"1.2-5"
+                    }}
+                </div>
+            </div>
+
+            <div class="description-rate">
+                <div class="rate-title">Last rate update</div>
+                <div class="rate-value">
+                    {{ currentDate | date: "dd MMM. YYYY" }}
+                </div>
+            </div>
+        </div>
+    </div>
+    <app-loader *ngIf="isLoad && !errorMessage"></app-loader>
+    <div *ngIf="errorMessage" class="error-block">{{ errorMessage }}</div>
+</div>

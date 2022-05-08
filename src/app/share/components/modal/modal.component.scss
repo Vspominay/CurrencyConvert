@@ -1,0 +1,133 @@
+@import "../../../../assets/styles/variables.scss";
+
+section {
+    z-index: 5;
+    visibility: hidden;
+    opacity: 0;
+    min-height: 100vh;
+    font-size: 16px;
+    color: #fff;
+
+    &.open {
+        visibility: inherit;
+        opacity: 1;
+    }
+
+    display: block;
+
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    background: rgba($color: #1d0b23, $alpha: 0.55);
+    transition: 0.2s linear;
+
+    > div {
+        max-height: 60vh;
+        overflow: auto;
+        position: absolute;
+        top: 40%;
+        left: 50%;
+        transform: translate(-50%, -40%);
+        background: linear-gradient(360deg, rgba(2, 76, 182, 0.7) 0%, rgba(70, 66, 169, 0.9) 38.54%);
+        padding: 30px;
+        max-width: 300px;
+        width: 100%;
+        border: 0;
+        border-radius: 20px;
+        box-shadow: 0 0 8px 4px rgba(0, 0, 0, 0.1);
+
+        scrollbar-width: none;
+        &::-webkit-scrollbar {
+            width: 0; /* ширина для вертикального скролла */
+        }
+    }
+
+    button.close {
+        background: none;
+        color: inherit;
+        border: none;
+        font: inherit;
+        cursor: pointer;
+        outline: none;
+        position: absolute;
+        top: 0;
+        right: 0;
+        padding: 10px;
+
+        .icon-close {
+            font-size: 24px;
+            color: rgba($color: $pink, $alpha: 0.6);
+            transition: 0.2s;
+        }
+
+        &:hover .icon-close {
+            color: rgba($color: $pink, $alpha: 1);
+        }
+    }
+
+    .modal__inner {
+        .input-block {
+            input {
+                background: transparent;
+                max-width: 240px;
+                outline: none;
+                border: 0;
+                color: #fff;
+            }
+        }
+
+        .separate-line {
+            margin: 7px 0;
+            height: 2px;
+            border-radius: 20%;
+            background: linear-gradient(87.03deg, #bd3f80 0.67%, #024cb6 98.58%);
+        }
+
+        .country {
+            &-row {
+                display: flex;
+                flex-wrap: wrap;
+                margin: 0 -10px;
+            }
+
+            &-col {
+                width: 33.333%;
+                padding: 15px 10px;
+            }
+
+            &-item {
+                color: rgba($color: #fff, $alpha: 0.7);
+                display: flex;
+                align-items: center;
+                cursor: pointer;
+                transition: 0.2s;
+                .country-code {
+                    margin-left: 7px;
+                    text-transform: uppercase;
+                    font-size: 12px;
+                }
+
+                &:hover {
+                    color: rgba($color: #fff, $alpha: 1);
+                }
+            }
+        }
+    }
+}
+
+.chats-notFound {
+    width: 100%;
+    margin-top: 15px;
+    pointer-events: none;
+    text-align: center;
+    font-size: 18px;
+    text-transform: uppercase;
+
+    background: linear-gradient(87.03deg, #bd3f80 0.67%, #bd3f80 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}

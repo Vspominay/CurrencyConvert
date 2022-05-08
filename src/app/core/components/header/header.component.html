@@ -1,0 +1,26 @@
+<header class="header">
+    <div class="header-content">
+        <ng-container *ngIf="currencyUkrEUR.value && currencyUkrUSD.value">
+            <div class="content-country-row">
+                <app-currency
+                    [currency]="currencyUSA"
+                    [left]="true"
+                ></app-currency>
+                <span class="separator"> / </span>
+                <app-currency [currency]="currencyUkrUSD"></app-currency>
+            </div>
+
+            <div class="content-country-row">
+                <app-currency
+                    [currency]="currencyEU"
+                    [left]="true"
+                ></app-currency>
+                <span class="separator"> / </span>
+                <app-currency [currency]="currencyUkrEUR"></app-currency>
+            </div>
+        </ng-container>
+        <ng-container *ngIf="!currencyUkrEUR.value && !currencyUkrUSD.value">
+            <app-loader></app-loader>
+        </ng-container>
+    </div>
+</header>

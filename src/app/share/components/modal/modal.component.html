@@ -1,0 +1,54 @@
+<ng-container *ngIf="display$ | async as display">
+    <section [class.open]="display === 'open'" (click)="close()">
+        <div class="modal" (click)="$event.stopPropagation()">
+            <button class="close" (click)="close()" type="button">
+                <span class="icon-close"></span>
+            </button>
+            <div class="modal__inner">
+                <div class="input-block">
+                    <input
+                        type="text"
+                        (input)="filterFlag($event)"
+                        [(ngModel)]="searchString"
+                        placeholder="UAH..."
+                    />
+                </div>
+                <div class="separate-line"></div>
+
+                <div class="country-row">
+                    <ng-container
+                        *ngIf="
+                            filteredCountry.length > 0 || !searchString;
+                            else noCountry
+                        "
+                    >
+                        <div
+                            (click)="setFlag(country)"
+                            class="country-col"
+                            *ngFor="
+                                let country of countries
+                                    | filter: searchString:['code', 'country']
+                            "
+                        >
+                            <div class="country-item">
+                                <span class="country-flag">
+                                    <img
+                                        [src]="country.flag.flagCode"
+                                        width="35"
+                                        [alt]="country.flag.altCode"
+                                    />
+                                </span>
+                                <span class="country-code">{{
+                                    country.code | uppercase
+                                }}</span>
+                            </div>
+                        </div>
+                    </ng-container>
+                    <ng-template #noCountry>
+                        <div class="chats-notFound">Currency not found</div>
+                    </ng-template>
+                </div>
+            </div>
+        </div>
+    </section>
+</ng-container>

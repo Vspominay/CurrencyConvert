@@ -1,0 +1,47 @@
+@import "../../../../assets/styles/variables.scss";
+
+.header {
+    position: relative;
+    max-width: 420px;
+    margin: 0 auto;
+
+    &-content {
+        padding: 10px 20px;
+        background: $blueGradient;
+        border-radius: 0 0 $defaultRadius $defaultRadius;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .content-country-row {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        &:first-child {
+            margin-bottom: 15px;
+        }
+    }
+
+    .separator {
+        margin: 0 3px;
+    }
+}
+
+@media (min-width: 768px) {
+    .header {
+        max-width: 750px;
+
+        &-content {
+            padding: 15px 60px;
+            align-items: center;
+            flex-direction: row;
+            justify-content: center;
+        }
+        .content-country-row + .content-country-row {
+            margin-left: 30px;
+        }
+        .content-country-row:first-child {
+            margin-bottom: 0px;
+        }
+    }
+}
